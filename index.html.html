@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        width: 100%;
+        height: 70vh;
+        margin: 0px;
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        overflow-y: auto;
+        align-items: center;
+        background-color: rgb(34, 31, 31);
+        padding: 20px;
+        flex-wrap: wrap;
+    }
+     #display{
+        text-align: right !important;
+        direction: ltr;
+        margin-top: 0px;
+    }
+    .text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: centers;
+    }
+    .calculator{
+        border: 4px solid #717377;
+        padding: 7px 15px;
+        border-radius: 20px;
+
+        background-color: transparent;
+        box-shadow: 0px 3px 15px rgba(113, 115,119, 0.5);
+    }
+    button{
+        width: 65px;
+        height: 65px;
+        border: rgb(214, 208, 208);
+        font-size: 22px;
+        background-color:transparent;
+        color: white;
+        border-radius: 50px;
+        margin: 10px;
+        box-shadow: -8px -8px 15px rgba(255,255,255,0.2);
+        cursor: pointer;
+    }
+    input{
+        width: 320px;
+        border: none;
+        padding: 45px;
+        margin: 20px;
+        margin-top: 20px;
+        margin-bottom: 5px;
+        font-size: 40px;
+        background-color: transparent;
+        border-width: 50%;
+        border-color: white;
+        border-radius: 10%;
+        box-shadow: 0px 3px 15px rgba(84, 84,84, 0.1);
+        color: white;
+        border-bottom: 20px;
+        outline: none;
+        cursor: pointer;
+        }
+        input:focus{
+            outline:none;
+            border: none;
+        }
+        input::placeholder{
+            color: #ffffffff;
+        }
+</style>
+<body>
+ <div class="text">
+<h1 style="text-align: left;color:white; font-size: 900;margin: 60px;margin-bottom: 5px;">welcome to my calculator</h1>
+<h2 style="text-align: center;color: white; font-size: 900 ;margin-bottom: 10px;">   with ZU-link</h2>
+<p style="text-align: center;color: white; font-size: 900;margin-bottom: 10px;" >(Develop by Zuhaib Ali)</p></div>
+<div class="calculator"> 
+    <input type="text" id="display">
+    <div>
+        <button onclick="clearDisplay()" style="color:white;(253, 164, 0, 0.932);font-size: 20px;border-radius: 50px; color:green;">C</button>
+        <button onclick="deleteLast()"   style="color:rgb(238, 234, 234);font-size: 20px;color: green ;">-/</button>
+        <button onclick="appendValue('/')"  style="color: green;">/</button>
+        <button onclick="appendValue('-')"  style="color: green;">-</button>
+    </div>
+    <div>
+         <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button onclick="appendValue('*')"  style="color: green;">x</button>
+    </div>
+     <div>
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')" >5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button onclick="appendValue('+')"  style="color: green;">+</button>
+    </div>
+     <div>
+        <button onclick="appendValue('1')" >1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')" >3</button>
+        <button onclick="replay()" style="color: green;">R</button>
+         <div>
+        <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')" >.</button>
+        <button onclick="appendValue('00')">00</button>
+        <button  onclick="calculate()"  style="background-color: #fb7c14;" >=</button>
+    </div>
+    </div>
+    <div>
+        <script>
+            const display = document.getElementById("display");
+
+// نمبرز اور آپریٹرز ان پٹ میں شامل کرنا
+function appendValue(value) {
+    display.value += value;
+}
+
+// Clear (C) بٹن
+function clearDisplay() {
+    display.value = "";
+}
+
+// Delete (← یا -/) بٹن
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
+}
+
+// Equal (=) بٹن
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch {
+        display.value = "Error";
+    }
+}
+
+// Replay (R) بٹن
+let history = "";
+
+function calculate() {
+    try {
+        history = display.value; // پرانا حساب محفوظ
+        display.value = eval(display.value);
+    } catch {
+        display.value = "Error";
+    }
+}
+
+function replay() {
+    display.value = history;
+}
+        </script>
+</body>
+</html>
